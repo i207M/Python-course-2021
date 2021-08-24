@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Outside",
+            "type": "shell",
+            "command": "Start-Process 'C:\\Program Files (x86)\\Dev-Cpp\\ConsolePauser.exe' -Argument 'python ${file}'",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "never",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": "python ${file}",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "dedicated",
+                "focus": true
+            }
+        }
+    ]
+}

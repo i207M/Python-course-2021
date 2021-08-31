@@ -65,6 +65,6 @@ def claw(bv: str):
 
 
 if __name__ == '__main__':
-    # claw('BV1bW411n7fY')  # 改革春风吹满地
+    claw('BV1bW411n7fY')  # 改革春风吹满地
     # claw('BV1Sb4y1m7My')  # 合作投稿
-    claw('BV1SJ411e7c9')  # 合作投稿
+    # claw('BV1SJ411e7c9')  # 跳转链接

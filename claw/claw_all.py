@@ -3,8 +3,7 @@ import time
 from claw_page import claw
 
 bv_list = open('clawed_bv').read().splitlines()
-bv_list = bv_list[134:]
-f = open('fail.txt', 'w', encoding='utf-8')
+f = open('fail.txt', 'a', encoding='utf-8')
 for i, bv in enumerate(bv_list):
     try:
         claw(bv)

@@ -8,7 +8,7 @@ def claw_comment(aid: int):
     api_url = API_BASE.format(aid)
     api_ret = requests.get(api_url)
     api_text = api_ret.text
-    open('example_comment.json', 'w', encoding='utf-8').write(api_text)
+    # open('example_comment.json', 'w', encoding='utf-8').write(api_text)
     dat = json.loads(api_text)
     print(dat)
 

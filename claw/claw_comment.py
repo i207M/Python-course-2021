@@ -15,6 +15,7 @@ def claw_comment(bvid: str):
     api_url = API_BASE.format(aid)
     api_ret = requests.get(api_url)
     api_text = api_ret.text
+    # print(api_text)
     # open('example_comment.json', 'w', encoding='utf-8').write(api_text)
     comment_dict = json.loads(api_text)
     comment_dict = comment_dict['data']['hots']
@@ -23,7 +24,6 @@ def claw_comment(bvid: str):
     for comment in comment_dict:
         if len(comment_list) >= 5:
             break
-
         comment_list.append(comment['content']['message'])
 
     dic['reply'] = comment_list
@@ -40,4 +40,4 @@ if __name__ == '__main__':
         except Exception as e:
             print(e)
             print(f'FAILED {bv}')
-        time.sleep(0.01)
+        time.sleep(0.1)

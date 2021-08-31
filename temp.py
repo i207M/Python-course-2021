@@ -1,5 +1,5 @@
 import requests
 
-r = requests.get()
+r = requests.get('https://blog.i207m.top/')
 
-open('example.html', 'w', encoding='utf-8').write(r.text)
+open('example_blog.html', 'w', encoding='utf-8').write(r.text)

@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 
+from .home_redirect import redirect_video_list
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('video_list.urls')),
+    path('video_list/', include('video_list.urls')),
+    path('', redirect_video_list)
 ]

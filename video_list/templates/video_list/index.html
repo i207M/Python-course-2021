@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% load static %}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1.0"
     />
     <title>Starter Template - Materialize</title>
-    <link rel="icon" type="image/png" href="../static/favicon.ico" />
+    <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}" />
 
     <!-- CSS  -->
-    <link href="../static/css/font.css" rel="stylesheet" />
+    <link href="{% static 'css/font.css' %}" rel="stylesheet" />
     <link
-      href="../static/css/materialize.min.css"
+      href="{% static 'css/materialize.min.css' %}"
       type="text/css"
       rel="stylesheet"
       media="screen,projection"
     />
     <link
-      href="../static/css/style.css"
+      href="{% static 'css/style.css' %}"
       type="text/css"
       rel="stylesheet"
       media="screen,projection"
@@ -160,8 +161,8 @@
     </footer>
 
     <!--  Scripts-->
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/materialize.min.js"></script>
-    <script src="../static/js/init.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/materialize.min.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
   </body>
 </html>

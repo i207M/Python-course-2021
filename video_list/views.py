@@ -45,8 +45,14 @@ def index(request: HttpRequest):
     video_list = Video.objects.all()
     paginator = Paginator(video_list, 10)
 
-    current_page_num = int(request.GET.get('page', 1))
+    current_page_num = int(request.GET.get('page', 1))  # TODO
     current_page = paginator.page(current_page_num)
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
 
     return render(request, 'video_list/index.html', locals())
+
+
+def show(request: HttpRequest):
+    aid = int(request.GET.get('id'))  # TODO
+    video = Video.objects.get(aid=aid)
+    return render(request, 'video_list/show.html', locals())

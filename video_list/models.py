@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Video(models.Model):
-    aid = models.IntegerField()
+    aid = models.IntegerField(unique=True)
     bvid = models.CharField(max_length=15)
     title = models.CharField(max_length=200)
     desc = models.TextField()

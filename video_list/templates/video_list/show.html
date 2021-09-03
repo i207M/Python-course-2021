@@ -7,9 +7,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1.0"
     />
+    {% comment %}
     <meta name="referrer" content="no-referrer" />
+    {% endcomment %}
     <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}" />
-    <title>Video List #{{ current_page_num }}</title>
+    <title>Video - {{ video.title }}</title>
 
     <!-- CSS  -->
     <link href="{% static 'css/font.css' %}" rel="stylesheet" />
@@ -50,18 +52,20 @@
     </nav>
     <div class="container">
       <br /><br />
-      <h1 class="header center orange-text">
-        Video List #{{ current_page_num }}
-      </h1>
+      <h3 class="header center orange-text">{{ video.title }}</h3>
       <br /><br />
     </div>
 
     <div class="container col s12 m8 l6">
-      <div class="chip">Total number: {{ paginator.count }}</div>
-      {% for video in current_page %}
+      <div class="chip">Upload Time: {{ video.upload_time }}</div>
+      <br />
+      <div class="chip">View: {{ video.num_view }}</div>
+      <div class="chip">Like: {{ video.num_like }}</div>
+      <div class="chip">Coin: {{ video.num_coin }}</div>
+      <div class="chip">Favorite: {{ video.num_favorite }}</div>
       <div class="card horizontal hoverable">
         <div class="card-image valign-wrapper">
-          <img src="{{ video.cover }}" alt="cover" style="max-height: 240px" />
+          <img src="{{ video.cover }}" alt="cover" style="max-height: 200px" />
         </div>
         <div class="card-stacked">
           <div class="card-content">
@@ -69,56 +73,38 @@
             <br />
             <p class="light"><b>UP：</b>{{ video.up_name }}</p>
           </div>
+        </div>
+      </div>
+      <div class="card horizontal hoverable">
+        <div class="card-image valign-wrapper">
+          <img
+            src="{{ video.up_face }}"
+            alt="cover"
+            style="max-height: 128px"
+          />
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <h6 class="header">{{ video.up_name }}</h6>
+          </div>
           <div class="card-action">
-            <a href="show/?id={{ video.aid }}">详细信息</a>
+            <a href="/up_list/show/?id={{ video.up_id }}">详细信息</a>
           </div>
         </div>
       </div>
-      {% endfor %}
       <br />
     </div>
 
-    <div class="container">
-      <div class="valign-wrapper">
-        <ul class="pagination">
-          {% if current_page.has_previous %}
-          <li class="waves-effect">
-            <a href="?page={{ current_page.previous_page_number }}"
-              ><i class="material-icons">chevron_left</i></a
-            >
-          </li>
-          {% else %}
-          <li class="disabled">
-            <a href="#!"><i class="material-icons">chevron_left</i></a>
-          </li>
-          {% endif %} {{ pagination_text|safe }} {% if current_page.has_next %}
-          <li class="waves-effect">
-            <a href="?page={{ current_page.next_page_number }}"
-              ><i class="material-icons">chevron_right</i></a
-            >
-          </li>
-          {% else %}
-          <li class="disabled">
-            <a href="#!"><i class="material-icons">chevron_right</i></a>
-          </li>
-          {% endif %}
-        </ul>
-        <p class="black-text valign center-align" style="width: 70px">
-          Jump to
-        </p>
-        <form method="GET" action="." style="width: 50px">
-          <div class="input-field">
-            <input
-              id="input-page-num"
-              type="number"
-              name="page"
-              class="validate"
-            />
-            <label for="input-page-num">Page</label>
-          </div>
-        </form>
-      </div>
-      <br /><br />
+    <div class="container center-align">
+      <iframe
+        src="//player.bilibili.com/player.html?aid={{ video.aid }}&bvid=BV1bW411n7fY&cid=31621681&page=1"
+        scrolling="no"
+        border="0"
+        frameborder="no"
+        framespacing="0"
+        allowfullscreen="true"
+      >
+      </iframe>
     </div>
 
     <footer class="page-footer pink lighten-2">

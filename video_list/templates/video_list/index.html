@@ -58,13 +58,10 @@
 
     <div class="container">
       <div class="col s12 m8 l6">
+        {% for v in videos %}
         <div class="card horizontal">
           <div class="card-image">
-            <img
-              src="https://i0.hdslb.com/bfs/archive/d52994a1876d07a975dc6683b78a898d9b581208.png"
-              alt="cover"
-              height="200"
-            />
+            <img src="{{ v.cover }}" alt="cover" height="200" />
           </div>
           <div class="card-stacked">
             <div class="card-content">
@@ -76,6 +73,7 @@
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
       <br /><br />
     </div>

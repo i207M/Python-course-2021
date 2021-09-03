@@ -5,5 +5,5 @@ from .models import Video
 
 
 def index(request):
-    context = {'page_num': 1}
+    context = {'page_num': 1, 'videos': Video.objects.all()}
     return render(request, 'video_list/index.html', context=context)

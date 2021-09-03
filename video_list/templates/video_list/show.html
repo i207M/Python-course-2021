@@ -31,7 +31,7 @@
   <body>
     <nav class="pink lighten-2" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">Bilibili GuiChu</a>
+        <a id="logo-container" href="/" class="brand-logo">Bilibili GuiChu</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="/video_list">Video List</a></li>
           <li><a href="/up_list">UP List</a></li>
@@ -52,7 +52,7 @@
     </nav>
     <div class="container">
       <br /><br />
-      <h3 class="header center orange-text">{{ video.title }}</h3>
+      <h3 class="header center orange-text">Video Details</h3>
       <br /><br />
     </div>
 
@@ -71,7 +71,9 @@
           <div class="card-content">
             <h5 class="header">{{ video.title }}</h5>
             <br />
-            <p class="light"><b>UP：</b>{{ video.up_name }}</p>
+            <a class="waves-effect waves-light btn pink lighten-2"
+              ><i class="material-icons left">play_circle_outline</i>Play</a
+            >
           </div>
         </div>
       </div>
@@ -97,12 +99,13 @@
 
     <div class="container center-align">
       <iframe
-        src="//player.bilibili.com/player.html?aid={{ video.aid }}&bvid=BV1bW411n7fY&cid=31621681&page=1"
+        src="https://player.bilibili.com/player.html?aid={{ video.aid }}"
         scrolling="no"
         border="0"
         frameborder="no"
         framespacing="0"
         allowfullscreen="true"
+        style="width: 100%; aspect-ratio: 2/1"
       >
       </iframe>
     </div>

@@ -19,7 +19,7 @@ for i, bv in enumerate(bv_list):
         dat: dict = json.load(open(path, 'r', encoding='utf-8'))
         dat.pop('up_sign')
         dat.pop('num_up_fan')
-        Video.objects.get_or_create(**dat)
+        Video.objects.create(**dat)
         if i % 100 == 0:
             print(Video.objects.count())
     else:

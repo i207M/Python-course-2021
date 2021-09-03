@@ -17,5 +17,8 @@ class Video(models.Model):
     upload_time = models.CharField(max_length=20)
     reply = models.JSONField()
 
+    class Meta:
+        ordering = ["id"]
+
     def __str__(self):
         return f'video_{self.aid}'

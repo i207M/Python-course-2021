@@ -22,5 +22,6 @@ from .home_redirect import redirector
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('video_list/', include('video_list.urls')),
+    path('up_list/', include('up_list.urls')),
     path('', redirector)
 ]

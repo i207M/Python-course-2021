@@ -55,14 +55,15 @@
     </div>
 
     <div class="container col s12 m8 l6">
+      <div class="chip">Total number: {{ paginator.count }}</div>
       {% for up in current_page %}
       <div class="card horizontal hoverable">
         <div class="card-image valign-wrapper">
-          <img src="{{ up.face }}" alt="cover" style="max-height: 100px" />
+          <img src="{{ up.face }}" alt="cover" style="max-height: 128px" />
         </div>
         <div class="card-stacked">
           <div class="card-content">
-            <h5 class="header">{{ up.name }}</h5>
+            <h6 class="header">{{ up.name }}</h6>
           </div>
           <div class="card-action">
             <a href="#">详细信息</a>

@@ -7,7 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1.0"
     />
-    <meta name="referrer" content="origin-when-cross-origin" />
+    <meta name="referrer" content="no-referrer" />
     <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}" />
     <title>Video List #{{ page_num }}</title>
 
@@ -29,7 +29,7 @@
   <body>
     <nav class="pink lighten-2" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">BiliBili GuiChu</a>
+        <a id="logo-container" href="#" class="brand-logo">Bilibili GuiChu</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="/video_list">Video List</a></li>
           <li><a href="/up_list">Up List</a></li>
@@ -51,7 +51,7 @@
     <div class="section no-pad-bot" id="index-banner">
       <div class="container">
         <br /><br />
-        <h1 class="header center orange-text">Vidoe List #{{ page_num }}</h1>
+        <h1 class="header center orange-text">Video List #{{ page_num }}</h1>
         <br /><br />
       </div>
     </div>
@@ -60,26 +60,16 @@
       <div class="col s12 m8 l6">
         <div class="card horizontal">
           <div class="card-image">
-            <img src="/static/example_cover.png" />
+            <img
+              src="https://i0.hdslb.com/bfs/archive/d52994a1876d07a975dc6683b78a898d9b581208.png"
+              alt="cover"
+              height="200"
+            />
           </div>
           <div class="card-stacked">
             <div class="card-content">
               <h5 class="header medium">标题</h5>
-              <p class="light">简介简介简介</p>
-            </div>
-            <div class="card-action">
-              <a href="#">详细信息</a>
-            </div>
-          </div>
-        </div>
-        <div class="card horizontal">
-          <div class="card-image">
-            <img src="/static/example_cover.png" />
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-              <h5 class="header medium">标题</h5>
-              <p class="light">简介简介简介</p>
+              <p class="light">作者</p>
             </div>
             <div class="card-action">
               <a href="#">详细信息</a>
@@ -93,7 +83,7 @@
     <footer class="page-footer pink lighten-2">
       <div class="container">
         <div class="row">
-          <h5 class="white-text">BiliBili GuiChu</h5>
+          <h5 class="white-text">Bilibili GuiChu Top5000</h5>
           <p class="grey-text text-lighten-4">Made by i207M</p>
         </div>
       </div>

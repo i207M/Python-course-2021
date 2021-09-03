@@ -38,7 +38,6 @@ def get_pagination_text(page: int, max_page: int) -> str:
             ret += f'<li class="active pink lighten-2"><a href="#!">{p}</a></li>'
         else:
             ret += f'<li class="waves-effect"><a href="?page={p}">{p}</a></li>'
-    print(ret)
     return ret
 
 
@@ -50,11 +49,4 @@ def index(request: HttpRequest):
     current_page = paginator.page(current_page_num)
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
 
-    # html = open('./video_list/templates/video_list/index.html', 'r', encoding='utf-8').read()
-    # html = html.replace(
-    #     '{% comment %} pagination_text {% endcomment %}',
-    #     get_pagination_text(current_page_num, paginator.num_pages)
-    # )
-    # a: HttpResponse = render_to_response()
-    # a.
     return render(request, 'video_list/index.html', locals())

@@ -7,8 +7,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1.0"
     />
-    <title>Starter Template - Materialize</title>
+    <meta name="referrer" content="origin-when-cross-origin" />
     <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}" />
+    <title>Video List #{{ title }}</title>
 
     <!-- CSS  -->
     <link href="{% static 'css/font.css' %}" rel="stylesheet" />
@@ -26,15 +27,21 @@
     />
   </head>
   <body>
-    <nav class="light-blue lighten-1" role="navigation">
+    <nav class="light-pink lighten-1" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">Logo</a>
+        <a id="logo-container" href="#" class="brand-logo">BiliBili GuiChu</a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="#">Navbar Link</a></li>
+          <li><a href="/video_list">Video List</a></li>
+          <li><a href="#">Up List</a></li>
+          <li>
+            <a href="#"><i class="material-icons">search</i></a>
+          </li>
         </ul>
 
         <ul id="nav-mobile" class="sidenav">
-          <li><a href="#">Navbar Link</a></li>
+          <li><a href="#">Video List</a></li>
+          <li><a href="#">Up List</a></li>
+          <li><a href="#">Search</i></a></li>
         </ul>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a

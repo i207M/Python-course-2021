@@ -1,44 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponseNotFound
 from django.core.paginator import Paginator
 
 from .models import Up
-
-
-def get_pagination_text(page: int, max_page: int) -> str:
-    '''
-    <li class="active pink lighten-2"><a href="#!">1</a></li>
-    <li class="waves-effect"><a href="#!">2</a></li>
-    <li class="disabled"><a href="#!"><i>...</i></a></li>
-    '''
-    page_list = []
-    if page <= 4:
-        for i in range(1, page + 3):
-            page_list.append(i)
-        page_list.append('...')
-        page_list.append(max_page)
-    elif max_page - page <= 3:
-        page_list.append(1)
-        page_list.append('...')
-        for i in range(page - 2, max_page + 1):
-            page_list.append(i)
-    else:
-        page_list.append(1)
-        page_list.append('...')
-        for i in range(page - 2, page + 3):
-            page_list.append(i)
-        page_list.append('...')
-        page_list.append(max_page)
-
-    ret = ''
-    for p in page_list:
-        if p == '...':
-            ret += '<li class="disabled"><a href="#!"><i>...</i></a></li>'
-        elif p == page:
-            ret += f'<li class="active pink lighten-2"><a href="#!">{p}</a></li>'
-        else:
-            ret += f'<li class="waves-effect"><a href="?page={p}">{p}</a></li>'
-    return ret
+from video_list.models import Video
+from utils.pagination import get_pagination_text
 
 
 def index(request: HttpRequest):
@@ -50,3 +16,19 @@ def index(request: HttpRequest):
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
 
     return render(request, 'up_list/index.html', locals())
+
+
+def show(request: HttpRequest):
+    id = int(request.GET.get('id', -1))
+    up = Up.objects.get(id=id)
+    if up is None:
+        return HttpResponseNotFound('<h1>Invalid UP ID</h1>')
+
+    up_video_list = Video.objects.filter(up_id=id)
+    paginator = Paginator(up_video_list, 10)
+
+    current_page_num = int(request.GET.get('page', 1))
+    current_page = paginator.page(current_page_num)
+    pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
+
+    return render(request, 'up_list/show.html', locals())

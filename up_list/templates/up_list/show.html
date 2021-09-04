@@ -11,7 +11,7 @@
     <meta name="referrer" content="no-referrer" />
     {% endcomment %}
     <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}" />
-    <title>Video - {{ video.title }}</title>
+    <title>UP - {{ up.name }}</title>
 
     <!-- CSS  -->
     <link href="{% static 'css/font.css' %}" rel="stylesheet" />
@@ -52,102 +52,91 @@
     </nav>
     <div class="container">
       <br /><br />
-      <h3 class="header center orange-text">Video Details</h3>
+      <h3 class="header center orange-text">UP Details</h3>
       <br /><br />
     </div>
 
     <div class="container col s12 m8 l6">
-      <div class="chip">Upload Time: {{ video.upload_time }}</div>
-      <br />
-      <div class="chip">View: {{ video.num_view }}</div>
-      <div class="chip">Like: {{ video.num_like }}</div>
-      <div class="chip">Coin: {{ video.num_coin }}</div>
-      <div class="chip">Favorite: {{ video.num_favorite }}</div>
+      <div class="chip">Fans: {{ up.num_fan }}</div>
       <div class="card horizontal hoverable">
         <div class="card-image valign-wrapper">
           <img
-            src="{{ video.cover }}@960w_600h_1c_1s.webp"
+            src="{{ up.face }}@256w_256h_1c_1s.webp"
             alt="cover"
-            style="max-height: 240px"
+            height="128px"
           />
         </div>
         <div class="card-stacked">
-          <div class="card-content">
-            <h5 class="header" style="margin-bottom: 1.5em">
-              {{ video.title }}
-            </h5>
-            <div class="row" style="margin-bottom: 0px">
-              <div class="col s12 m12 l6">
-                <a
-                  class="card horizontal hoverable"
-                  style="margin-bottom: 0.5rem"
-                  href="/up_list/show/?id={{ video.up_id }}"
-                >
-                  <div class="card-image valign-wrapper">
-                    <img
-                      src="{{ video.up_face }}@96w_96h_1c_1s.webp"
-                      alt="cover"
-                      height="36px"
-                    />
-                  </div>
-                  <div class="card-stacked">
-                    <div
-                      class="card-content valign-wrapper"
-                      style="padding: 6px"
-                    >
-                      <p class="black-text valign">{{ video.up_name }}</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="col s12 m12 l6">
-                <a
-                  class="waves-effect waves-light btn pink lighten-2 right"
-                  href="https://www.bilibili.com/video/{{ video.bvid }}"
-                  target="_blank"
-                  style="margin-top: 0.5rem"
-                  ><i class="material-icons left">play_circle_outline</i>Play</a
-                >
-              </div>
-            </div>
+          <div class="card-content" style="padding: 12px">
+            <h6 class="header">{{ up.name }}</h6>
+          </div>
+          <div class="card-action">
+            <a href="https://space.bilibili.com/{{ up.id }}" target="_blank"
+              >详细信息</a
+            >
           </div>
         </div>
       </div>
-      <br />
-    </div>
-
-    <div class="container">
-      <div class="video-container">
-        <iframe
-          src="https://player.bilibili.com/player.html?aid={{ video.aid }}"
-          scrolling="no"
-          border="0"
-          frameborder="no"
-          framespacing="0"
-          allowfullscreen="true"
-          width="100%"
-        >
-        </iframe>
-      </div>
-      <br />
     </div>
 
     <div class="container">
       <div class="section">
         <h4 class="header">简介</h4>
-        <p>{{ video.desc }}</p>
+        <p>{{ up.sign }}</p>
         <div class="divider"></div>
       </div>
-      <div class="section">
-        <h4 class="header" style="margin-top: 0px">评论</h4>
-        <div class="collection">
-          {% if not video.reply %}
-          <div class="collection-item">暂无评论</div>
-          {% else %} {% for rep in video.reply %}
-          <div class="collection-item">{{ rep }}</div>
-          {% endfor %} {% endif %}
+    </div>
+
+    <div class="container">
+      <div class="row valign-wrapper">
+        <div class="col s7" style="padding: 0px">
+          <div class="right">
+            <ul class="pagination">
+              {% if current_page.has_previous %}
+              <li class="waves-effect">
+                <a href="?page={{ current_page.previous_page_number }}"
+                  ><i class="material-icons">chevron_left</i></a
+                >
+              </li>
+              {% else %}
+              <li class="disabled">
+                <a href="#!"><i class="material-icons">chevron_left</i></a>
+              </li>
+              {% endif %}
+              <span>{{ pagination_text|safe }}</span>
+              {% if current_page.has_next %}
+              <li class="waves-effect">
+                <a href="?page={{ current_page.next_page_number }}"
+                  ><i class="material-icons">chevron_right</i></a
+                >
+              </li>
+              {% else %}
+              <li class="disabled">
+                <a href="#!"><i class="material-icons">chevron_right</i></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+        <div class="col s5 valign-wrapper" style="padding: 0px">
+          <p>Jump to&nbsp;</p>
+          <form method="GET" action="." style="width: 50px">
+            <div class="input-field">
+              <input
+                id="input-page-num"
+                type="number"
+                name="page"
+                class="validate"
+                style="margin: 0px"
+                min="1"
+                max="{{ paginator.num_pages }}"
+              />
+              <label for="input-page-num">Page</label>
+            </div>
+          </form>
         </div>
       </div>
+      <br /><br />
     </div>
 
     <footer class="page-footer pink lighten-2">

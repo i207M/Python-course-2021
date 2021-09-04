@@ -11,7 +11,7 @@ class Video(models.Model):
     num_like = models.IntegerField()
     num_coin = models.IntegerField()
     num_favorite = models.IntegerField()
-    up_id = models.IntegerField()
+    up_id = models.IntegerField(db_index=True)
     up_name = models.CharField(max_length=40)
     up_face = models.CharField(max_length=80)
     upload_time = models.CharField(max_length=20)

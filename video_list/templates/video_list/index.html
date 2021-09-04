@@ -68,9 +68,10 @@
             <h5 class="header" style="margin-bottom: 1em">{{ video.title }}</h5>
             <div class="row" style="margin-bottom: 0px">
               <div class="col s12 m12 l6">
-                <div
+                <a
                   class="card horizontal hoverable"
                   style="margin-bottom: 0.5rem"
+                  href="/up_list/show/?id={{ video.up_id }}"
                 >
                   <div class="card-image valign-wrapper">
                     <img
@@ -84,10 +85,10 @@
                       class="card-content valign-wrapper"
                       style="padding: 12px"
                     >
-                      <p class="valign">{{ video.up_name }}</p>
+                      <p class="black-text valign">{{ video.up_name }}</p>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
               <div class="col s12 m12 l6">
                 <a
@@ -110,44 +111,53 @@
     </div>
 
     <div class="container">
-      <div class="valign-wrapper">
-        <ul class="pagination">
-          {% if current_page.has_previous %}
-          <li class="waves-effect">
-            <a href="?page={{ current_page.previous_page_number }}"
-              ><i class="material-icons">chevron_left</i></a
-            >
-          </li>
-          {% else %}
-          <li class="disabled">
-            <a href="#!"><i class="material-icons">chevron_left</i></a>
-          </li>
-          {% endif %} {{ pagination_text|safe }} {% if current_page.has_next %}
-          <li class="waves-effect">
-            <a href="?page={{ current_page.next_page_number }}"
-              ><i class="material-icons">chevron_right</i></a
-            >
-          </li>
-          {% else %}
-          <li class="disabled">
-            <a href="#!"><i class="material-icons">chevron_right</i></a>
-          </li>
-          {% endif %}
-        </ul>
-        <p class="black-text valign center-align" style="width: 70px">
-          Jump to
-        </p>
-        <form method="GET" action="." style="width: 50px">
-          <div class="input-field">
-            <input
-              id="input-page-num"
-              type="number"
-              name="page"
-              class="validate"
-            />
-            <label for="input-page-num">Page</label>
+      <div class="row valign-wrapper">
+        <div class="col s12 m6 l6" style="padding: 0px">
+          <div class="right">
+            <ul class="pagination">
+              {% if current_page.has_previous %}
+              <li class="waves-effect">
+                <a href="?page={{ current_page.previous_page_number }}"
+                  ><i class="material-icons">chevron_left</i></a
+                >
+              </li>
+              {% else %}
+              <li class="disabled">
+                <a href="#!"><i class="material-icons">chevron_left</i></a>
+              </li>
+              {% endif %}
+              <span>{{ pagination_text|safe }}</span>
+              {% if current_page.has_next %}
+              <li class="waves-effect">
+                <a href="?page={{ current_page.next_page_number }}"
+                  ><i class="material-icons">chevron_right</i></a
+                >
+              </li>
+              {% else %}
+              <li class="disabled">
+                <a href="#!"><i class="material-icons">chevron_right</i></a>
+              </li>
+              {% endif %}
+            </ul>
           </div>
-        </form>
+        </div>
+        <div class="col s12 m6 l6 valign-wrapper" style="padding: 0px">
+          <p class="black-text valign center-align" style="width: 60px">
+            Jump to
+          </p>
+          <form method="GET" action="." style="width: 50px">
+            <div class="input-field">
+              <input
+                id="input-page-num"
+                type="number"
+                name="page"
+                class="validate"
+                style="margin: 0px"
+              />
+              <label for="input-page-num">Page</label>
+            </div>
+          </form>
+        </div>
       </div>
       <br /><br />
     </div>

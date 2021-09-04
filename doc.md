@@ -63,5 +63,43 @@
 
 ## 数据
 
+使用SQLite3管理数据。数据分为两个表，分别记录视频信息和UP主信息。结构如下：
+
+```python
+class Video(models.Model):
+    aid = models.IntegerField(unique=True)
+    bvid = models.CharField(max_length=15)
+    title = models.CharField(max_length=200)
+    desc = models.TextField()
+    cover = models.CharField(max_length=80)
+    num_view = models.IntegerField()
+    num_like = models.IntegerField()
+    num_coin = models.IntegerField()
+    num_favorite = models.IntegerField()
+    up_id = models.IntegerField(db_index=True)
+    up_name = models.CharField(max_length=40)
+    up_face = models.CharField(max_length=80)
+    upload_time = models.CharField(max_length=20)
+    reply = models.JSONField()
+    
+class Up(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=40)
+    face = models.CharField(max_length=80)
+    sign = models.TextField()
+    num_fan = models.IntegerField()
+```
+
+为加快响应速度，Video表对`id,aid,up_id`都建立了索引；Up表对`id`建立了索引。
+
+视频信息共5006条，UP主信息共1900条。数据库总大小27.8MB。
+
 ## 相关技术
 
+使用Django Template渲染网页。
+
+CSS框架使用基于Material Design的[Dogfalo](https://github.com/Dogfalo)/**[materialize](https://github.com/Dogfalo/materialize)**库。这一框架较为轻便，仍具有许多功能，例如响应式布局等。且框架自带的卡片、按钮、输入框等样式可以方便地用于网页设计。
+
+使用[vfeskov](https://github.com/vfeskov)/**[vanilla-back-to-top](https://github.com/vfeskov/vanilla-back-to-top)**库，实现“返回顶部”按钮。
+
+搜索算法为SQLite3查询。

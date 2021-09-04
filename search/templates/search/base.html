@@ -49,4 +49,61 @@ Search {% endif %} {% endblock %}
     </div>
   </form>
 </div>
-{% block list%}{% endblock %} {% endblock %}
+{% block list%}{% endblock %}
+{% if %}
+<div class="container">
+  <div class="row valign-wrapper">
+    <div class="col s7" style="padding: 0px">
+      <div class="right">
+        <ul class="pagination">
+          {% if current_page.has_previous %}
+          <li class="waves-effect">
+            <a
+              href="?{{ params_encoded }}&page={{ current_page.previous_page_number }}"
+              ><i class="material-icons">chevron_left</i></a
+            >
+          </li>
+          {% else %}
+          <li class="disabled">
+            <a href="#!"><i class="material-icons">chevron_left</i></a>
+          </li>
+          {% endif %}
+          <span>{{ pagination_text|safe }}</span>
+          {% if current_page.has_next %}
+          <li class="waves-effect">
+            <a
+              href="?{{ params_encoded }}&page={{ current_page.next_page_number }}"
+              ><i class="material-icons">chevron_right</i></a
+            >
+          </li>
+          {% else %}
+          <li class="disabled">
+            <a href="#!"><i class="material-icons">chevron_right</i></a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    <div class="col s5 valign-wrapper" style="padding: 0px">
+      <p>Jump to&nbsp;</p>
+      <form method="GET" action="#" style="width: 50px">
+        <input type="hidden" name="category" value="up" />
+        <input type="hidden" name="query" value="{{ request.GET.query }}" />
+        <div class="input-field">
+          <input
+            id="input-page-num"
+            type="number"
+            name="page"
+            class="validate"
+            style="margin: 0px"
+            min="1"
+            max="{{ paginator.num_pages }}"
+          />
+          <label for="input-page-num">Page</label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br /><br />
+</div>
+{% endblock %}

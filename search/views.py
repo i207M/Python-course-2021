@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from up_list.models import Up
 from video_list.models import Video
 from utils.pagination import get_pagination_text
-from utils.err_handler import err404
+from utils.err_handler import err_404
 
 
 def encode_params(GET) -> str:
@@ -28,7 +28,7 @@ def search_video(request: HttpRequest):
         current_page_num = int(request.GET.get('page', 1))
         assert (current_page_num in paginator.page_range)
     except Exception:
-        return err404(request, 'Invalid Page Num')
+        return err_404(request, 'Invalid Page Num')
 
     current_page = paginator.page(current_page_num)
     params_encoded = encode_params(request.GET)
@@ -51,7 +51,7 @@ def search_up(request: HttpRequest):
         current_page_num = int(request.GET.get('page', 1))
         assert (current_page_num in paginator.page_range)
     except Exception:
-        return err404(request, 'Invalid Page Num')
+        return err_404(request, 'Invalid Page Num')
 
     current_page = paginator.page(current_page_num)
     params_encoded = encode_params(request.GET)
@@ -65,7 +65,7 @@ def search_up(request: HttpRequest):
 def index(request: HttpRequest):
     cat = request.GET.get('category')
     if cat is None or not request.GET.get('query'):
-        return render(request, 'search/base.html')
+        return render(request, 'search/base.html', locals())
     elif cat == 'video':
         return search_video(request)
     else:

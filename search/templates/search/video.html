@@ -2,21 +2,52 @@
 <div class="container">
   <div class="chip">Total number: {{ paginator.count }}</div>
   <div class="chip">Time usage: {{ time_usage }}ms</div>
-  {% for up in current_page %}
+  {% for video in current_page %}
   <div class="card horizontal hoverable">
     <div class="card-image valign-wrapper">
       <img
-        src="{{ up.face }}@256w_256h_1c_1s.webp"
+        src="{{ video.cover }}@960w_600h_1c_1s.webp"
         alt="cover"
-        height="128px"
+        style="max-height: 240px"
       />
     </div>
     <div class="card-stacked">
-      <div class="card-content" style="padding: 12px">
-        <h6 class="header">{{ up.name }}</h6>
+      <div class="card-content" style="padding-bottom: 12px">
+        <h5 class="header" style="margin-bottom: 1em">{{ video.title }}</h5>
+        <div class="row" style="margin-bottom: 0px">
+          <div class="col s12 m12 l6">
+            <a
+              class="card horizontal hoverable"
+              style="margin-bottom: 0.5rem"
+              href="/up_list/show/{{ video.up_id }}/"
+            >
+              <div class="card-image valign-wrapper">
+                <img
+                  src="{{ video.up_face }}@96w_96h_1c_1s.webp"
+                  alt="cover"
+                  height="36px"
+                />
+              </div>
+              <div class="card-stacked">
+                <div class="card-content valign-wrapper" style="padding: 6px">
+                  <p class="black-text valign">{{ video.up_name }}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col s12 m12 l6">
+            <a
+              class="waves-effect waves-light btn pink lighten-2 right"
+              href="https://www.bilibili.com/video/{{ video.bvid }}"
+              target="_blank"
+              style="margin-top: 0.5rem"
+              ><i class="material-icons left">play_circle_outline</i>Play</a
+            >
+          </div>
+        </div>
       </div>
       <div class="card-action">
-        <a href="/up_list/show/{{ up.id }}/">详细信息</a>
+        <a href="/video_list/show/{{ video.aid }}/">详细信息</a>
       </div>
     </div>
   </div>

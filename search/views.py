@@ -1,3 +1,5 @@
+import time
+
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.core.paginator import Paginator
@@ -9,8 +11,33 @@ from utils.err_handler import err404
 
 
 def search_video(request: HttpRequest):
+    start_time = time.time()
+
     search_text = request.GET.get('query', '')
-    up_list = Up.objects.all()
+    video_list = Video.objects.filter(title__contains=search_text
+                                      ) | Video.objects.filter(desc__contains=search_text)
+    paginator = Paginator(video_list, 10)
+
+    try:
+        current_page_num = int(request.GET.get('page', 1))
+        assert (current_page_num in paginator.page_range)
+    except Exception:
+        return err404(request, 'Invalid Page Num')
+
+    current_page = paginator.page(current_page_num)
+    pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
+
+    time_usage = f'{time.time() - start_time:.3f}'
+
+    return render(request, 'search/video.html', locals())
+
+
+def search_up(request: HttpRequest):
+    start_time = time.time()
+
+    search_text = request.GET.get('query', '')
+    up_list = Up.objects.filter(name__contains=search_text
+                                ) | Up.objects.filter(sign__contains=search_text)
     paginator = Paginator(up_list, 10)
 
     try:
@@ -22,11 +49,9 @@ def search_video(request: HttpRequest):
     current_page = paginator.page(current_page_num)
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
 
-    return render(request, 'search/video.html', locals())
+    time_usage = f'{time.time() - start_time:.3f}'
 
-
-def search_up(request: HttpRequest):
-    pass
+    return render(request, 'search/up.html', locals())
 
 
 def index(request: HttpRequest):

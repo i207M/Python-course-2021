@@ -7,8 +7,8 @@ RUN apt-get update && \
       apt-get -y install sudo
 
 RUN sudo apt-get install -y build-essential python3-pip
-RUN python3 -m pip install --upgrade pip \
-    sed -i '1d' requirements.txt \
+RUN python3 -m pip install --upgrade pip && \
+    sed -i '1d' requirements.txt && \
     python3 -m pip install -r requirements.txt
 RUN chmod +x start.sh
 

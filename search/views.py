@@ -10,6 +10,12 @@ from utils.pagination import get_pagination_text
 from utils.err_handler import err404
 
 
+def encode_params(GET) -> str:
+    mutable_params = GET.copy()
+    mutable_params.pop('page', None)
+    return mutable_params.urlencode()
+
+
 def search_video(request: HttpRequest):
     start_time = time.time()
 
@@ -25,7 +31,8 @@ def search_video(request: HttpRequest):
         return err404(request, 'Invalid Page Num')
 
     current_page = paginator.page(current_page_num)
-    pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
+    params_encoded = encode_params(request.GET)
+    pagination_text = get_pagination_text(current_page_num, paginator.num_pages, params_encoded)
 
     time_usage = f'{time.time() - start_time:.3f}'
 
@@ -47,7 +54,8 @@ def search_up(request: HttpRequest):
         return err404(request, 'Invalid Page Num')
 
     current_page = paginator.page(current_page_num)
-    pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
+    params_encoded = encode_params(request.GET)
+    pagination_text = get_pagination_text(current_page_num, paginator.num_pages, params_encoded)
 
     time_usage = f'{time.time() - start_time:.3f}'
 

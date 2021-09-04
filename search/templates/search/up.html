@@ -1,4 +1,13 @@
-{% extends 'search/base.html' %} {% block list %}
+{% extends 'search/base.html' %} {% block radio %}
+<label>
+  <input name="category" value="video" type="radio" />
+  <span>Video</span>
+</label>
+<label>
+  <input name="category" value="up" type="radio" checked />
+  <span>UP</span>
+</label>
+{% endblock %} {% block list %}
 <div class="container">
   <div class="chip">Total number: {{ paginator.count }}</div>
   <div class="chip">Time usage: {{ time_usage }}ms</div>
@@ -31,7 +40,8 @@
         <ul class="pagination">
           {% if current_page.has_previous %}
           <li class="waves-effect">
-            <a href="?page={{ current_page.previous_page_number }}"
+            <a
+              href="?{{ params_encoded }}&page={{ current_page.previous_page_number }}"
               ><i class="material-icons">chevron_left</i></a
             >
           </li>
@@ -43,7 +53,8 @@
           <span>{{ pagination_text|safe }}</span>
           {% if current_page.has_next %}
           <li class="waves-effect">
-            <a href="?page={{ current_page.next_page_number }}"
+            <a
+              href="?{{ params_encoded }}&page={{ current_page.next_page_number }}"
               ><i class="material-icons">chevron_right</i></a
             >
           </li>
@@ -58,6 +69,8 @@
     <div class="col s5 valign-wrapper" style="padding: 0px">
       <p>Jump to&nbsp;</p>
       <form method="GET" action="#" style="width: 50px">
+        <input type="hidden" name="category" value="up" />
+        <input type="hidden" name="query" value="{{ request.GET.query }}" />
         <div class="input-field">
           <input
             id="input-page-num"

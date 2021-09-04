@@ -1,4 +1,4 @@
-def get_pagination_text(page: int, max_page: int) -> str:
+def get_pagination_text(page: int, max_page: int, params_encoded: str = '') -> str:
     '''
     <li class="active pink lighten-2"><a href="#!">1</a></li>
     <li class="waves-effect"><a href="#!">2</a></li>
@@ -32,5 +32,8 @@ def get_pagination_text(page: int, max_page: int) -> str:
         elif p == page:
             ret += f'<li class="active pink lighten-2"><a href="#!">{p}</a></li>'
         else:
-            ret += f'<li class="waves-effect"><a href="?page={p}">{p}</a></li>'
+            if params_encoded:
+                ret += f'<li class="waves-effect"><a href="?{params_encoded}&page={p}">{p}</a></li>'
+            else:
+                ret += f'<li class="waves-effect"><a href="?page={p}">{p}</a></li>'
     return ret

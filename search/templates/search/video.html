@@ -62,7 +62,8 @@
         <ul class="pagination">
           {% if current_page.has_previous %}
           <li class="waves-effect">
-            <a href="?page={{ current_page.previous_page_number }}"
+            <a
+              href="?{{ params_encoded }}&page={{ current_page.previous_page_number }}"
               ><i class="material-icons">chevron_left</i></a
             >
           </li>
@@ -74,7 +75,8 @@
           <span>{{ pagination_text|safe }}</span>
           {% if current_page.has_next %}
           <li class="waves-effect">
-            <a href="?page={{ current_page.next_page_number }}"
+            <a
+              href="?{{ params_encoded }}&page={{ current_page.next_page_number }}"
               ><i class="material-icons">chevron_right</i></a
             >
           </li>
@@ -89,6 +91,8 @@
     <div class="col s5 valign-wrapper" style="padding: 0px">
       <p>Jump to&nbsp;</p>
       <form method="GET" action="#" style="width: 50px">
+        <input type="hidden" name="category" value="video" />
+        <input type="hidden" name="query" value="{{ request.GET.query }}" />
         <div class="input-field">
           <input
             id="input-page-num"

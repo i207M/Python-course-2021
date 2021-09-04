@@ -11,7 +11,12 @@ def index(request: HttpRequest):
     up_list = Up.objects.all()
     paginator = Paginator(up_list, 10)
 
-    current_page_num = int(request.GET.get('page', 1))
+    try:
+        current_page_num = int(request.GET.get('page', 1))
+        assert (current_page_num in paginator.page_range)
+    except Exception:
+        return HttpResponseNotFound('<h1>Invalid Page Num</h1>')
+
     current_page = paginator.page(current_page_num)
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
 
@@ -19,9 +24,11 @@ def index(request: HttpRequest):
 
 
 def show(request: HttpRequest, id: str):
-    id = int(id)
-    up = Up.objects.get(id=id)
-    if up is None:
+    try:
+        id = int(id)
+        up = Up.objects.get(id=id)
+        assert (up is not None)
+    except Exception:
         return HttpResponseNotFound('<h1>Invalid UP ID</h1>')
 
     up_video_list = Video.objects.filter(up_id=id)

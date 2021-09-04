@@ -10,8 +10,10 @@ def index(request: HttpRequest):
     video_list = Video.objects.all()
     paginator = Paginator(video_list, 10)
 
-    current_page_num = int(request.GET.get('page', 1))
-    if current_page_num not in paginator.page_range:
+    try:
+        current_page_num = int(request.GET.get('page', 1))
+        assert (current_page_num in paginator.page_range)
+    except Exception:
         return HttpResponseNotFound('<h1>Invalid Page Num</h1>')
 
     current_page = paginator.page(current_page_num)
@@ -21,9 +23,11 @@ def index(request: HttpRequest):
 
 
 def show(request: HttpRequest, aid: str):
-    aid = int(aid)
-    video = Video.objects.get(aid=aid)
-    if video is None:
+    try:
+        aid = int(aid)
+        video = Video.objects.get(aid=aid)
+        assert (video is not None)
+    except Exception:
         return HttpResponseNotFound('<h1>Invalid Video AID</h1>')
 
     return render(request, 'video_list/show.html', locals())

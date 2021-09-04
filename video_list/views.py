@@ -20,8 +20,8 @@ def index(request: HttpRequest):
     return render(request, 'video_list/index.html', locals())
 
 
-def show(request: HttpRequest):
-    aid = int(request.GET.get('id', -1))
+def show(request: HttpRequest, aid: str):
+    aid = int(aid)
     video = Video.objects.get(aid=aid)
     if video is None:
         return HttpResponseNotFound('<h1>Invalid Video AID</h1>')

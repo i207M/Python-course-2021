@@ -18,8 +18,8 @@ def index(request: HttpRequest):
     return render(request, 'up_list/index.html', locals())
 
 
-def show(request: HttpRequest):
-    id = int(request.GET.get('id', -1))
+def show(request: HttpRequest, id: str):
+    id = int(id)
     up = Up.objects.get(id=id)
     if up is None:
         return HttpResponseNotFound('<h1>Invalid UP ID</h1>')

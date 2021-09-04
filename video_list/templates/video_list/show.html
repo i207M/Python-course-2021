@@ -65,7 +65,11 @@
       <div class="chip">Favorite: {{ video.num_favorite }}</div>
       <div class="card horizontal hoverable">
         <div class="card-image valign-wrapper">
-          <img src="{{ video.cover }}" alt="cover" style="max-height: 240px" />
+          <img
+            src="{{ video.cover }}@960w_600h_1c_1s.webp"
+            alt="cover"
+            style="max-height: 240px"
+          />
         </div>
         <div class="card-stacked">
           <div class="card-content" style="padding-bottom: 12px">
@@ -83,13 +87,13 @@
                     <img
                       src="{{ video.up_face }}@96w_96h_1c_1s.webp"
                       alt="cover"
-                      height="50px"
+                      height="36px"
                     />
                   </div>
                   <div class="card-stacked">
                     <div
                       class="card-content valign-wrapper"
-                      style="padding: 12px"
+                      style="padding: 6px"
                     >
                       <p class="black-text valign">{{ video.up_name }}</p>
                     </div>
@@ -106,6 +110,9 @@
                 >
               </div>
             </div>
+          </div>
+          <div class="card-action">
+            <a href="./?id={{ video.aid }}">详细信息</a>
           </div>
         </div>
       </div>

@@ -71,7 +71,10 @@
           <div class="card-content">
             <h5 class="header">{{ video.title }}</h5>
             <br />
-            <a class="waves-effect waves-light btn pink lighten-2"
+            <a
+              class="waves-effect waves-light btn pink lighten-2"
+              href="https://www.bilibili.com/video/{{ video.bvid }}"
+              target="_blank"
               ><i class="material-icons left">play_circle_outline</i>Play</a
             >
           </div>
@@ -97,17 +100,19 @@
       <br />
     </div>
 
-    <div class="container center-align">
-      <iframe
-        src="https://player.bilibili.com/player.html?aid={{ video.aid }}"
-        scrolling="no"
-        border="0"
-        frameborder="no"
-        framespacing="0"
-        allowfullscreen="true"
-        style="width: 100%; aspect-ratio: 2/1"
-      >
-      </iframe>
+    <div class="container">
+      <div class="video-container">
+        <iframe
+          src="https://player.bilibili.com/player.html?aid={{ video.aid }}"
+          scrolling="no"
+          border="0"
+          frameborder="no"
+          framespacing="0"
+          allowfullscreen="true"
+          width="100%"
+        >
+        </iframe>
+      </div>
     </div>
 
     <footer class="page-footer pink lighten-2">

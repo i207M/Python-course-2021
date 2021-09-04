@@ -64,10 +64,43 @@
           <img src="{{ video.cover }}" alt="cover" style="max-height: 240px" />
         </div>
         <div class="card-stacked">
-          <div class="card-content">
+          <div class="card-content" style="padding: 12px">
             <h5 class="header">{{ video.title }}</h5>
             <br />
-            <p class="light"><b>UP：</b>{{ video.up_name }}</p>
+
+            <div class="row valign-wrapper" style="margin-bottom: 0px">
+              <div class="col s6 valign-wrapper">
+                <div class="card horizontal hoverable valign">
+                  <div class="card-image valign-wrapper">
+                    <img
+                      src="{{ video.up_face }}"
+                      alt="cover"
+                      style="max-height: 50px"
+                    />
+                  </div>
+                  <div class="card-stacked">
+                    <div class="card-content" style="padding: 12px">
+                      <p class="valign">{{ video.up_name }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col s2"></div>
+              <div class="col s4">
+                <a
+                  class="
+                    waves-effect waves-light
+                    btn
+                    pink
+                    lighten-2
+                    center-align
+                  "
+                  href="https://www.bilibili.com/video/{{ video.bvid }}"
+                  target="_blank"
+                  ><i class="material-icons left">play_circle_outline</i>Play</a
+                >
+              </div>
+            </div>
           </div>
           <div class="card-action">
             <a href="show/?id={{ video.aid }}">详细信息</a>

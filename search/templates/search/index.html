@@ -70,12 +70,21 @@
         </div>
         <div class="input-field col s10">
           <i class="material-icons prefix">search</i>
+          {% if search_text %}
           <input
+            type="text"
+            name="query"
+            placeholder="搜索你想要的内容..."
+            value="{{ search_text }}"
+            class="validate"
+          />
+          {% else %}<input
             type="text"
             name="query"
             placeholder="搜索你想要的内容..."
             class="validate"
           />
+          {% endif %}
         </div>
         <div class="input-field col s2">
           <a class="waves-effect waves-light btn pink lighten-2">搜索</a>
@@ -85,6 +94,7 @@
 
     <div class="container">
       <div class="chip">Total number: {{ paginator.count }}</div>
+      <div class="chip">Time usage: {{ search_time }}ms</div>
       {% for up in current_page %}
       <div class="card horizontal hoverable">
         <div class="card-image valign-wrapper">

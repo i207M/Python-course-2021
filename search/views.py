@@ -7,7 +7,16 @@ from video_list.models import Video
 from utils.pagination import get_pagination_text
 
 
+def search_video():
+    pass
+
+
+def search_up():
+    pass
+
+
 def index(request: HttpRequest):
+    search_text = request.GET.get('query', '')
     up_list = Up.objects.all()
     paginator = Paginator(up_list, 10)
 

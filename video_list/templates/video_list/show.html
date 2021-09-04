@@ -1,176 +1,100 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    {% load static %}
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1.0"
-    />
-    {% comment %}
-    <meta name="referrer" content="no-referrer" />
-    {% endcomment %}
-    <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}" />
-    <title>Video - {{ video.title }}</title>
+{% extends 'base.html' %}
+<!-- DoNotFormat -->
+{% block title %}Video - {{ video.title }}{% endblock %}
+<!-- DoNotFormat -->
+{% block main %}
+<div class="container">
+  <br /><br />
+  <h3 class="header center orange-text">Video Details</h3>
+  <br /><br />
+</div>
 
-    <!-- CSS  -->
-    <link href="{% static 'css/font.css' %}" rel="stylesheet" />
-    <link
-      href="{% static 'css/materialize.min.css' %}"
-      type="text/css"
-      rel="stylesheet"
-      media="screen,projection"
-    />
-    <link
-      href="{% static 'css/style.css' %}"
-      type="text/css"
-      rel="stylesheet"
-      media="screen,projection"
-    />
-  </head>
-  <body>
-    <nav class="pink lighten-2" role="navigation">
-      <div class="nav-wrapper container">
-        <a id="logo-container" href="/" class="brand-logo">Bilibili GuiChu</a>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="/video_list">Video List</a></li>
-          <li><a href="/up_list">UP List</a></li>
-          <li>
-            <a href="/search"><i class="material-icons">search</i></a>
-          </li>
-        </ul>
-
-        <ul id="nav-mobile" class="sidenav">
-          <li><a href="/video_list">Video List</a></li>
-          <li><a href="/up_list">UP List</a></li>
-          <li><a href="/search">Search</a></li>
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"
-          ><i class="material-icons">menu</i></a
-        >
-      </div>
-    </nav>
-    <div class="container">
-      <br /><br />
-      <h3 class="header center orange-text">Video Details</h3>
-      <br /><br />
+<div class="container col s12 m8 l6">
+  <div class="chip">Upload Time: {{ video.upload_time }}</div>
+  <br />
+  <div class="chip">View: {{ video.num_view }}</div>
+  <div class="chip">Like: {{ video.num_like }}</div>
+  <div class="chip">Coin: {{ video.num_coin }}</div>
+  <div class="chip">Favorite: {{ video.num_favorite }}</div>
+  <div class="card horizontal hoverable">
+    <div class="card-image valign-wrapper">
+      <img
+        src="{{ video.cover }}@960w_600h_1c_1s.webp"
+        alt="cover"
+        style="max-height: 240px"
+      />
     </div>
-
-    <div class="container col s12 m8 l6">
-      <div class="chip">Upload Time: {{ video.upload_time }}</div>
-      <br />
-      <div class="chip">View: {{ video.num_view }}</div>
-      <div class="chip">Like: {{ video.num_like }}</div>
-      <div class="chip">Coin: {{ video.num_coin }}</div>
-      <div class="chip">Favorite: {{ video.num_favorite }}</div>
-      <div class="card horizontal hoverable">
-        <div class="card-image valign-wrapper">
-          <img
-            src="{{ video.cover }}@960w_600h_1c_1s.webp"
-            alt="cover"
-            style="max-height: 240px"
-          />
-        </div>
-        <div class="card-stacked">
-          <div class="card-content">
-            <h5 class="header" style="margin-bottom: 1.5em">
-              {{ video.title }}
-            </h5>
-            <div class="row" style="margin-bottom: 0px">
-              <div class="col s12 m12 l6">
-                <a
-                  class="card horizontal hoverable"
-                  style="margin-bottom: 0.5rem"
-                  href="/up_list/show/{{ video.up_id }}/"
-                >
-                  <div class="card-image valign-wrapper">
-                    <img
-                      src="{{ video.up_face }}@96w_96h_1c_1s.webp"
-                      alt="cover"
-                      height="36px"
-                    />
-                  </div>
-                  <div class="card-stacked">
-                    <div
-                      class="card-content valign-wrapper"
-                      style="padding: 6px"
-                    >
-                      <p class="black-text valign">{{ video.up_name }}</p>
-                    </div>
-                  </div>
-                </a>
+    <div class="card-stacked">
+      <div class="card-content">
+        <h5 class="header" style="margin-bottom: 1.5em">{{ video.title }}</h5>
+        <div class="row" style="margin-bottom: 0px">
+          <div class="col s12 m12 l6">
+            <a
+              class="card horizontal hoverable"
+              style="margin-bottom: 0.5rem"
+              href="/up_list/show/{{ video.up_id }}/"
+            >
+              <div class="card-image valign-wrapper">
+                <img
+                  src="{{ video.up_face }}@96w_96h_1c_1s.webp"
+                  alt="cover"
+                  height="36px"
+                />
               </div>
-              <div class="col s12 m12 l6">
-                <a
-                  class="waves-effect waves-light btn pink lighten-2 right"
-                  href="https://www.bilibili.com/video/{{ video.bvid }}"
-                  target="_blank"
-                  style="margin-top: 0.5rem"
-                  ><i class="material-icons left">play_circle_outline</i>Play</a
-                >
+              <div class="card-stacked">
+                <div class="card-content valign-wrapper" style="padding: 6px">
+                  <p class="black-text valign">{{ video.up_name }}</p>
+                </div>
               </div>
-            </div>
+            </a>
+          </div>
+          <div class="col s12 m12 l6">
+            <a
+              class="waves-effect waves-light btn pink lighten-2 right"
+              href="https://www.bilibili.com/video/{{ video.bvid }}"
+              target="_blank"
+              style="margin-top: 0.5rem"
+              ><i class="material-icons left">play_circle_outline</i>Play</a
+            >
           </div>
         </div>
       </div>
-      <br />
     </div>
+  </div>
+  <br />
+</div>
 
-    <div class="container">
-      <div class="video-container">
-        <iframe
-          src="https://player.bilibili.com/player.html?aid={{ video.aid }}"
-          scrolling="no"
-          border="0"
-          frameborder="no"
-          framespacing="0"
-          allowfullscreen="true"
-          width="100%"
-        >
-        </iframe>
-      </div>
-      <br />
+<div class="container">
+  <div class="video-container">
+    <iframe
+      src="https://player.bilibili.com/player.html?aid={{ video.aid }}"
+      scrolling="no"
+      border="0"
+      frameborder="no"
+      framespacing="0"
+      allowfullscreen="true"
+      width="100%"
+    >
+    </iframe>
+  </div>
+  <br />
+</div>
+
+<div class="container">
+  <div class="section">
+    <h4 class="header">简介</h4>
+    <p>{{ video.desc }}</p>
+    <div class="divider"></div>
+  </div>
+  <div class="section">
+    <h4 class="header" style="margin-top: 0px">评论</h4>
+    <div class="collection">
+      {% if not video.reply %}
+      <div class="collection-item">暂无评论</div>
+      {% else %} {% for rep in video.reply %}
+      <div class="collection-item">{{ rep }}</div>
+      {% endfor %} {% endif %}
     </div>
-
-    <div class="container">
-      <div class="section">
-        <h4 class="header">简介</h4>
-        <p>{{ video.desc }}</p>
-        <div class="divider"></div>
-      </div>
-      <div class="section">
-        <h4 class="header" style="margin-top: 0px">评论</h4>
-        <div class="collection">
-          {% if not video.reply %}
-          <div class="collection-item">暂无评论</div>
-          {% else %} {% for rep in video.reply %}
-          <div class="collection-item">{{ rep }}</div>
-          {% endfor %} {% endif %}
-        </div>
-      </div>
-    </div>
-
-    <footer class="page-footer pink lighten-2">
-      <div class="container">
-        <div class="row">
-          <h5 class="white-text">Bilibili GuiChu Top5000</h5>
-          <p class="grey-text text-lighten-4">Made by i207M</p>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          CSS by
-          <a class="pink-text text-lighten-3" href="http://materializecss.com"
-            >Materialize</a
-          >
-        </div>
-      </div>
-    </footer>
-
-    <!--  Scripts-->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/materialize.min.js' %}"></script>
-    <script src="{% static 'js/init.js' %}"></script>
-    <script src="{% static 'js/vanilla-back-to-top.min.js' %}"></script>
-  </body>
-</html>
+  </div>
+</div>
+{% endblock %}

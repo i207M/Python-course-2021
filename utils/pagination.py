@@ -1,3 +1,6 @@
+from django.shortcuts import render
+
+
 def get_pagination_text(page: int, max_page: int) -> str:
     '''
     <li class="active pink lighten-2"><a href="#!">1</a></li>
@@ -34,3 +37,7 @@ def get_pagination_text(page: int, max_page: int) -> str:
         else:
             ret += f'<li class="waves-effect"><a href="?page={p}">{p}</a></li>'
     return ret
+
+
+def err404(request, err_msg: str):
+    return render(request, '404.html', context={'err_msg': err_msg}, status=404)

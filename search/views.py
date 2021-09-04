@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 
 from up_list.models import Up
 from video_list.models import Video
-from utils.pagination import get_pagination_text
+from utils.pagination import get_pagination_text, err404
 
 
 def search_video():

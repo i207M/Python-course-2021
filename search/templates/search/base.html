@@ -48,6 +48,9 @@ Search {% endif %} {% endblock %}
       <a class="waves-effect waves-light btn pink lighten-2">搜索</a>
     </div>
   </form>
+  {% if is_index_page %}
+  <br /><br /><br /><br />
+  {% endif %}
 </div>
 {% block list%}{% endblock %} {% if not is_index_page %}
 <div class="container">

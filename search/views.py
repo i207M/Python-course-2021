@@ -1,13 +1,13 @@
 import time
 
-from django.shortcuts import render
-from django.http import HttpRequest
 from django.core.paginator import Paginator
+from django.http import HttpRequest
+from django.shortcuts import render
 
 from up_list.models import Up
 from video_list.models import Video
-from utils.pagination import get_pagination_text
 from utils.err_handler import err_404
+from utils.pagination import get_pagination_text
 
 
 def encode_params(GET) -> str:
@@ -26,16 +26,14 @@ def search_video(request: HttpRequest):
 
     try:
         current_page_num = int(request.GET.get('page', 1))
-        assert (current_page_num in paginator.page_range)
+        current_page = paginator.page(current_page_num)
     except Exception:
         return err_404(request, 'Invalid Page Num')
 
-    current_page = paginator.page(current_page_num)
     params_encoded = encode_params(request.GET)
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages, params_encoded)
 
     time_usage = f'{time.time() - start_time:.3f}'
-
     return render(request, 'search/video.html', locals())
 
 
@@ -49,21 +47,19 @@ def search_up(request: HttpRequest):
 
     try:
         current_page_num = int(request.GET.get('page', 1))
-        assert (current_page_num in paginator.page_range)
+        current_page = paginator.page(current_page_num)
     except Exception:
         return err_404(request, 'Invalid Page Num')
 
-    current_page = paginator.page(current_page_num)
     params_encoded = encode_params(request.GET)
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages, params_encoded)
 
     time_usage = f'{time.time() - start_time:.3f}'
-
     return render(request, 'search/up.html', locals())
 
 
 def index(request: HttpRequest):
-    cat = request.GET.get('category')
+    cat = request.GET.get('category', None)
     if cat is None or not request.GET.get('query'):
         is_index_page = True
         return render(request, 'search/base.html', locals())

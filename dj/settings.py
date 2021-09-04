@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'video_list',
     'up_list',
+    'search',
 ]
 
 MIDDLEWARE = [

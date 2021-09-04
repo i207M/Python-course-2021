@@ -8,15 +8,7 @@ from utils.pagination import get_pagination_text
 from utils.err_handler import err404
 
 
-def search_video():
-    pass
-
-
-def search_up():
-    pass
-
-
-def index(request: HttpRequest):
+def search_video(request: HttpRequest):
     search_text = request.GET.get('query', '')
     up_list = Up.objects.all()
     paginator = Paginator(up_list, 10)
@@ -31,3 +23,16 @@ def index(request: HttpRequest):
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
 
     return render(request, 'search/index.html', locals())
+
+
+def search_up(request: HttpRequest):
+    pass
+
+
+def index(request: HttpRequest):
+    if not request.GET.get('query'):
+        return render(request, 'search/base.html')
+    elif request.GET.get('up') == 'on':
+        return search_up(request)
+    else:
+        return search_video(request)

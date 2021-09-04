@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+<!-- DoNotFormat -->
+{% block title %} {% if search_text %} Search - {{ search_text }} {% else %}
+Search {% endif %} {% endblock %}
+<!-- DoNotFormat -->
+{% block main %}
+<div class="container">
+  <br /><br />
+  <h1 class="header center orange-text">Search</h1>
+  <br />
+</div>
+
+<div class="container">
+  <form class="row" style="margin-bottom: 0px">
+    <div class="input-field col s12">
+      <div class="row" style="margin-bottom: 0px">
+        <label>
+          <input name="video" type="radio" checked />
+          <span>Video</span>
+        </label>
+        <label>
+          <input name="up" type="radio" />
+          <span>UP</span>
+        </label>
+      </div>
+    </div>
+    <div class="input-field col s10">
+      <i class="material-icons prefix">search</i>
+      {% if search_text %}
+      <input
+        type="text"
+        name="query"
+        placeholder="搜索你想要的内容..."
+        value="{{ search_text }}"
+        class="validate"
+      />
+      {% else %}<input
+        type="text"
+        name="query"
+        placeholder="搜索你想要的内容..."
+        class="validate"
+      />
+      {% endif %}
+    </div>
+    <div class="input-field col s2">
+      <a class="waves-effect waves-light btn pink lighten-2">搜索</a>
+    </div>
+  </form>
+</div>
+{% block list%}{% endblock %} {% endblock %}

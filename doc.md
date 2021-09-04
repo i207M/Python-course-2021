@@ -103,3 +103,6 @@ CSS框架使用基于Material Design的[Dogfalo](https://github.com/Dogfalo)/**[
 使用[vfeskov](https://github.com/vfeskov)/**[vanilla-back-to-top](https://github.com/vfeskov/vanilla-back-to-top)**库，实现“返回顶部”按钮。
 
 搜索算法为SQLite3查询。
+
+为便于部署，构建了docker镜像，可通过`207m/bili-demo:latest`获取。
+

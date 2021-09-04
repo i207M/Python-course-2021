@@ -1,10 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpRequest
 from django.core.paginator import Paginator
+from django.http import HttpRequest
+from django.shortcuts import render
 
 from .models import Video
-from utils.pagination import get_pagination_text
 from utils.err_handler import err_404
+from utils.pagination import get_pagination_text
 
 
 def index(request: HttpRequest):
@@ -13,13 +13,11 @@ def index(request: HttpRequest):
 
     try:
         current_page_num = int(request.GET.get('page', 1))
-        assert (current_page_num in paginator.page_range)
+        current_page = paginator.page(current_page_num)
     except Exception:
         return err_404(request, 'Invalid Page Num')
 
-    current_page = paginator.page(current_page_num)
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
-
     return render(request, 'video_list/index.html', locals())
 
 

@@ -56,7 +56,7 @@
       <br /><br />
     </div>
 
-    <div class="container col s12 m8 l6">
+    <div class="container">
       <div class="chip">Total number: {{ paginator.count }}</div>
       {% for video in current_page %}
       <div class="card horizontal hoverable">
@@ -64,13 +64,14 @@
           <img src="{{ video.cover }}" alt="cover" style="max-height: 240px" />
         </div>
         <div class="card-stacked">
-          <div class="card-content" style="padding: 12px">
-            <h5 class="header">{{ video.title }}</h5>
-            <br />
-
-            <div class="row valign-wrapper" style="margin-bottom: 0px">
-              <div class="col s6 valign-wrapper">
-                <div class="card horizontal hoverable valign">
+          <div class="card-content" style="padding-bottom: 12px">
+            <h5 class="header" style="margin-bottom: 1em">{{ video.title }}</h5>
+            <div class="row" style="margin-bottom: 0px">
+              <div class="col s12 m12 l6">
+                <div
+                  class="card horizontal hoverable"
+                  style="margin-bottom: 0.5rem"
+                >
                   <div class="card-image valign-wrapper">
                     <img
                       src="{{ video.up_face }}"
@@ -79,24 +80,21 @@
                     />
                   </div>
                   <div class="card-stacked">
-                    <div class="card-content" style="padding: 12px">
+                    <div
+                      class="card-content valign-wrapper"
+                      style="padding: 12px"
+                    >
                       <p class="valign">{{ video.up_name }}</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col s2"></div>
-              <div class="col s4">
+              <div class="col s12 m12 l6">
                 <a
-                  class="
-                    waves-effect waves-light
-                    btn
-                    pink
-                    lighten-2
-                    center-align
-                  "
+                  class="waves-effect waves-light btn pink lighten-2 right"
                   href="https://www.bilibili.com/video/{{ video.bvid }}"
                   target="_blank"
+                  style="margin-top: 0.5rem"
                   ><i class="material-icons left">play_circle_outline</i>Play</a
                 >
               </div>

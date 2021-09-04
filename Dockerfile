@@ -1,15 +1,14 @@
-FROM ubuntu:20.04
+FROM python:3
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
-COPY . .
+COPY . /app
 
-RUN apt-get update && \
-      apt-get -y install sudo
+RUN apt-get update 
 
-RUN sudo apt-get install -y build-essential python3-pip
-RUN python3 -m pip install --upgrade pip && \
+RUN python -m pip install --upgrade pip && \
     sed -i '1d' requirements.txt && \
-    python3 -m pip install -r requirements.txt
+    python -m pip install -r requirements.txt
 RUN chmod +x start.sh
 
 EXPOSE 8000

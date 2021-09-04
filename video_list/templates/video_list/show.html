@@ -65,35 +65,47 @@
       <div class="chip">Favorite: {{ video.num_favorite }}</div>
       <div class="card horizontal hoverable">
         <div class="card-image valign-wrapper">
-          <img src="{{ video.cover }}" alt="cover" style="max-height: 200px" />
+          <img src="{{ video.cover }}" alt="cover" style="max-height: 240px" />
         </div>
         <div class="card-stacked">
-          <div class="card-content">
-            <h5 class="header">{{ video.title }}</h5>
-            <br />
-            <a
-              class="waves-effect waves-light btn pink lighten-2"
-              href="https://www.bilibili.com/video/{{ video.bvid }}"
-              target="_blank"
-              ><i class="material-icons left">play_circle_outline</i>Play</a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="card horizontal hoverable">
-        <div class="card-image valign-wrapper">
-          <img
-            src="{{ video.up_face }}"
-            alt="cover"
-            style="max-height: 128px"
-          />
-        </div>
-        <div class="card-stacked">
-          <div class="card-content">
-            <h6 class="header">{{ video.up_name }}</h6>
-          </div>
-          <div class="card-action">
-            <a href="/up_list/show/?id={{ video.up_id }}">详细信息</a>
+          <div class="card-content" style="padding-bottom: 12px">
+            <h5 class="header" style="margin-bottom: 1.8em">
+              {{ video.title }}
+            </h5>
+            <div class="row" style="margin-bottom: 0px">
+              <div class="col s12 m12 l6">
+                <a
+                  class="card horizontal hoverable"
+                  style="margin-bottom: 0.5rem"
+                  href="/up_list/show/?id={{ video.up_id }}"
+                >
+                  <div class="card-image valign-wrapper">
+                    <img
+                      src="{{ video.up_face }}@96w_96h_1c_1s.webp"
+                      alt="cover"
+                      height="50px"
+                    />
+                  </div>
+                  <div class="card-stacked">
+                    <div
+                      class="card-content valign-wrapper"
+                      style="padding: 12px"
+                    >
+                      <p class="black-text valign">{{ video.up_name }}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col s12 m12 l6">
+                <a
+                  class="waves-effect waves-light btn pink lighten-2 right"
+                  href="https://www.bilibili.com/video/{{ video.bvid }}"
+                  target="_blank"
+                  style="margin-top: 0.5rem"
+                  ><i class="material-icons left">play_circle_outline</i>Play</a
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -112,6 +124,18 @@
           width="100%"
         >
         </iframe>
+      </div>
+      <br />
+    </div>
+
+    <div class="container">
+      <h4 class="header">评论</h4>
+      <div class="collection">
+        {% if not video.reply %}
+        <div class="collection-item">暂无评论</div>
+        {% else %} {% for rep in video.reply %}
+        <div class="collection-item">{{ rep }}</div>
+        {% endfor %} {% endif %}
       </div>
     </div>
 

@@ -59,14 +59,18 @@
       {% for up in current_page %}
       <div class="card horizontal hoverable">
         <div class="card-image valign-wrapper">
-          <img src="{{ up.face }}" alt="cover" height="128px" />
+          <img
+            src="{{ up.face }}@256w_256h_1c_1s.webp"
+            alt="cover"
+            height="128px"
+          />
         </div>
         <div class="card-stacked">
           <div class="card-content" style="padding: 12px">
             <h6 class="header">{{ up.name }}</h6>
           </div>
           <div class="card-action">
-            <a href="#">详细信息</a>
+            <a href="show/?id={{ up.id }}">详细信息</a>
           </div>
         </div>
       </div>

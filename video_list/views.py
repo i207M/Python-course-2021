@@ -3,7 +3,8 @@ from django.http import HttpRequest
 from django.core.paginator import Paginator
 
 from .models import Video
-from utils.pagination import get_pagination_text, err404
+from utils.pagination import get_pagination_text
+from utils.err_handler import err404
 
 
 def index(request: HttpRequest):

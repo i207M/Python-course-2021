@@ -65,6 +65,7 @@ def search_up(request: HttpRequest):
 def index(request: HttpRequest):
     cat = request.GET.get('category')
     if cat is None or not request.GET.get('query'):
+        is_index_page = True
         return render(request, 'search/base.html', locals())
     elif cat == 'video':
         return search_video(request)

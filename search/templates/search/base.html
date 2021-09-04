@@ -49,8 +49,7 @@ Search {% endif %} {% endblock %}
     </div>
   </form>
 </div>
-{% block list%}{% endblock %}
-{% if %}
+{% block list%}{% endblock %} {% if not is_index_page %}
 <div class="container">
   <div class="row valign-wrapper">
     <div class="col s7" style="padding: 0px">
@@ -87,7 +86,11 @@ Search {% endif %} {% endblock %}
     <div class="col s5 valign-wrapper" style="padding: 0px">
       <p>Jump to&nbsp;</p>
       <form method="GET" action="#" style="width: 50px">
-        <input type="hidden" name="category" value="up" />
+        <input
+          type="hidden"
+          name="category"
+          value="{{ request.GET.category }}"
+        />
         <input type="hidden" name="query" value="{{ request.GET.query }}" />
         <div class="input-field">
           <input
@@ -106,4 +109,4 @@ Search {% endif %} {% endblock %}
   </div>
   <br /><br />
 </div>
-{% endblock %}
+{% endif %} {% endblock %}

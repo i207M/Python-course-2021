@@ -1,96 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
-    {% load static %}
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1.0"
-    />
-    <meta name="referrer" content="no-referrer" />
-    <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}" />
-    <title>Search - {{ search_text }}</title>
-
-    <!-- CSS  -->
-    <link href="{% static 'css/font.css' %}" rel="stylesheet" />
-    <link
-      href="{% static 'css/materialize.min.css' %}"
-      type="text/css"
-      rel="stylesheet"
-      media="screen,projection"
-    />
-    <link
-      href="{% static 'css/style.css' %}"
-      type="text/css"
-      rel="stylesheet"
-      media="screen,projection"
-    />
-    <style type="text/css">
-      body {
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-      }
-      main {
-        flex: 1 0 auto;
-      }
-    </style>
-  </head>
-  <body>
-    <main>
-      <nav class="pink lighten-2" role="navigation">
-        <div class="nav-wrapper container">
-          <a id="logo-container" href="/" class="brand-logo">Bilibili GuiChu</a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="/video_list">Video List</a></li>
-            <li><a href="/up_list">UP List</a></li>
-            <li>
-              <a href="/search"><i class="material-icons">search</i></a>
-            </li>
-          </ul>
-
-          <ul id="nav-mobile" class="sidenav">
-            <li><a href="/video_list">Video List</a></li>
-            <li><a href="/up_list">UP List</a></li>
-            <li><a href="/search">Search</a></li>
-          </ul>
-          <a href="#" data-target="nav-mobile" class="sidenav-trigger"
-            ><i class="material-icons">menu</i></a
-          >
-        </div>
-      </nav>
-      <div class="container">
-        <br /><br />
-        <h1 class="header center orange-text">{{ err_msg }}</h1>
-        <br />
-        <p class="center">Return to the previous page in three seconds.</p>
-      </div>
-    </main>
-
-    <footer class="page-footer pink lighten-2">
-      <div class="container">
-        <div class="row">
-          <h5 class="white-text">Bilibili GuiChu Top5000</h5>
-          <p class="grey-text text-lighten-4">Made by i207M</p>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          CSS by
-          <a class="pink-text text-lighten-3" href="http://materializecss.com"
-            >Materialize</a
-          >
-        </div>
-      </div>
-    </footer>
-
-    <!--  Scripts-->
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/materialize.min.js' %}"></script>
-    <script src="{% static 'js/init.js' %}"></script>
-    <script src="{% static 'js/vanilla-back-to-top.min.js' %}"></script>
-    <script>
-      setTimeout("window.history.go(-1)", 3000);
-    </script>
-  </body>
-</html>
+{% extends 'base.html' %} {% block title %}404{% endblock %} {% block main %}
+<div class="container">
+  <br /><br />
+  <h1 class="header center orange-text">{{ err_msg }}</h1>
+  <br />
+  <p class="center">Return to the previous page in three seconds.</p>
+</div>
+{% endblock %} {% block script %}
+<script>
+  setTimeout("window.history.go(-1)", 3000);
+</script>
+{% endblock %}

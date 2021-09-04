@@ -4,7 +4,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 COPY . /app
 
-RUN apt-get update 
+RUN apt-get update
 
 RUN python -m pip install --upgrade pip && \
     sed -i '1d' requirements.txt && \

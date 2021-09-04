@@ -17,12 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 
-from .home_redirect import redirector
+from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('video_list/', include('video_list.urls')),
     path('up_list/', include('up_list.urls')),
     path('search/', include('search.urls')),
-    path('', redirector)
+    path('', lambda *args: redirect('/video_list/'))
 ]

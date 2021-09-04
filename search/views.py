@@ -22,7 +22,7 @@ def search_video(request: HttpRequest):
     current_page = paginator.page(current_page_num)
     pagination_text = get_pagination_text(current_page_num, paginator.num_pages)
 
-    return render(request, 'search/index.html', locals())
+    return render(request, 'search/video.html', locals())
 
 
 def search_up(request: HttpRequest):
@@ -30,9 +30,10 @@ def search_up(request: HttpRequest):
 
 
 def index(request: HttpRequest):
-    if not request.GET.get('query'):
+    cat = request.GET.get('category')
+    if cat is None or not request.GET.get('query'):
         return render(request, 'search/base.html')
-    elif request.GET.get('up') == 'on':
-        return search_up(request)
-    else:
+    elif cat == 'video':
         return search_video(request)
+    else:
+        return search_up(request)
